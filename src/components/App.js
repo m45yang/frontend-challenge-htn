@@ -1,17 +1,25 @@
-var React = require('react');
-var HelloWorldComponent = require('./HelloWorldComponent.js');
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import VisibleAttendeeList from '../containers/VisibleAttendeeList';
+import htnApp from '../reducers/index'
 
-module.exports = React.createClass({
+let store = createStore(htnApp);
+
+let App = React.createClass({
   render() {
     return (
       <div>
-        <header>
-          <h1>Hack the North Frontend Challenge</h1>
-        </header>
-        <section>
-          <HelloWorldComponent />
-        </section>
+        <VisibleAttendeeList />
       </div>
     );
   }
 });
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('content')
+)
