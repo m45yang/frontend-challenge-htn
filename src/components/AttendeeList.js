@@ -3,17 +3,15 @@ import Attendee from './Attendee';
 
 export default class AttendeeList extends Component {
   render() {
-    return (PropTypes.arrayOf(PropTypes.shape({
-      <div>
-        <ul>
-          {attendees.map(attendee =>
-            <Attendee
-              key = attendee.id
-              {...attendee}
-            />
-          )}
-        </ul>
-      </div>
+    return (
+      <ul>
+        {this.props.attendees.map(attendee =>
+          <Attendee
+            key={attendee.id}
+            {...attendee}
+          />
+        )}
+      </ul>
     );
   }
 }
@@ -31,7 +29,7 @@ AttendeeList.propTypes = {
     longitude: PropTypes.string.isRequired,
     skills: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
-      rating: PropTypes.float.isRequired
+      rating: PropTypes.number.isRequired
     }).isRequired).isRequired,
   }).isRequired).isRequired
 }

@@ -26,19 +26,17 @@ function fetchPosts() {
   }
 }
 
-function shouldFetchPosts(state) {
-  const attendees = state.attendees;
-  if (!posts || !posts.isFetching) {
-    return true
-  } else if (posts.isFetching) {
-    return false
-  }
-}
+// function shouldFetchPosts(state) {
+//   const attendees = state.attendees;
+//   if (!posts || !posts.isFetching) {
+//     return true
+//   } else if (posts.isFetching) {
+//     return false
+//   }
+// }
 
-export function fetchPostsIfNeeded(subreddit) {
-  return (getState) => {
-    if (shouldFetchPosts(getState())) {
-      return dispatch(fetchPosts())
-    }
+export function fetchPostsIfNeeded() {
+  return (dispatch) => {
+    return dispatch(fetchPosts)
   }
 }

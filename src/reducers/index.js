@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux'
 
-function htnApp(state, action) {
+const initialState = {
+  attendees : []
+}
+
+export default function htnApp(state = initialState, action) {
   switch (action.type) {
-    case RECEIVE_POSTS:
+    case 'RECEIVE_POSTS':
       return Object.assign({}, state, {
-        isFetching: false,
         attendees: action.attendees
       })
     default:

@@ -10,7 +10,7 @@ export default class Attendee extends Component {
   }
 }
 
-Attendee.propTypes: {
+Attendee.propTypes ={
   name: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
@@ -21,6 +21,6 @@ Attendee.propTypes: {
   longitude: PropTypes.string.isRequired,
   skills: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    rating: PropTypes.float.isRequired
+    rating: PropTypes.number.isRequired
   }).isRequired).isRequired,
-},
+}

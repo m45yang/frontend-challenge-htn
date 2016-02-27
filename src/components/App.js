@@ -1,13 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import Async from '../containers/AsyncApp'
-import VisibleAttendeeList from '../containers/VisibleAttendeeList';
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import AsyncApp from '../containers/AsyncApp'
 import htnApp from '../reducers/index'
 
-let store = createStore(htnApp);
+let store = createStore(htnApp, { attendees : [] }, applyMiddleware(thunkMiddleware));
 
+console.log(store.getState());
 let App = React.createClass({
   render() {
     return (
@@ -18,9 +19,4 @@ let App = React.createClass({
   }
 });
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('content')
-)
+export default App
