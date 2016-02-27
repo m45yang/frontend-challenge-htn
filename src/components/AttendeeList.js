@@ -17,7 +17,7 @@ export default class AttendeeList extends Component {
 }
 
 AttendeeList.propTypes = {
-  attendees : PropTypes.arrayOf(PropTypes.shape({
+  attendees: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,

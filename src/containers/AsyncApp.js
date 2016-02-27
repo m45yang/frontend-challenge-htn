@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { fetchPostsIfNeeded } from '../actions'
+import { fetchPosts, receivePosts } from '../actions/index'
 import AttendeeList from '../components/AttendeeList'
 
 class AsyncApp extends Component {
@@ -9,7 +9,8 @@ class AsyncApp extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchPostsIfNeeded)
+    const { dispatch } = this.props
+    dispatch(fetchPosts)
   }
 
   render() {

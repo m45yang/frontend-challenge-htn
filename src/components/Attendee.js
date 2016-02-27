@@ -4,7 +4,7 @@ export default class Attendee extends Component {
   render() {
     return (
       <li>
-        {name}: {email}
+        {this.props.name}: {this.props.email}
       </li>
     )
   }
