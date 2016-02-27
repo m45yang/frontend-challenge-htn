@@ -4,20 +4,16 @@ import fetch from 'isomorphic-fetch'
 * Action creators
 */
 
-export function receivePosts(json) {
-  console.log('receivePosts')
+function receivePosts(json) {
   return {
     type: 'RECEIVE_POSTS',
-    attendees: json.data.children.map(child => child.data)
+    attendees: json
   }
 }
 
-export function fetchPosts() {
-  console.log('fetchPosts')
-  return (dispatch) => {
-    console.log('dispatch receivePosts')
-    return fetch('https://htn-interviews.firebaseio.com/users.json')
-      .then(req => req.json(), error => console.log(error))
-      .then(json => dispatch(receivePosts(json)), error => console.log(error))
-  }
+export function fetchPosts(dispatch) {
+  let url = 'https://htn-interviews.firebaseio.com/users.json'
+  return fetch(url)
+    .then(req => req.json(), error => console.log(error))
+    .then(json => dispatch(receivePosts(json)), error => console.log(error))
 }
