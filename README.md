@@ -5,7 +5,9 @@ Displays attendees with filter and search functionalities.
 
 ## Usage
 
-`git clone git@github.com:hackthenorth/frontend-challenge-starter.git`
+__Clone the repository:__
+
+`git@github.com:m45yang/frontend-challenge-htn.git`
 
 __Install the dependencies:__
 
