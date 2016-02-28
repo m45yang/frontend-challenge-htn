@@ -9,7 +9,6 @@ export default class Search extends Component {
   handleSearchSubmit() {
     const { handleSearchSubmit } = this.props
     let searchName = this.refs.searchName.value
-    console.log(searchName)
     handleSearchSubmit(searchName)
   }
 

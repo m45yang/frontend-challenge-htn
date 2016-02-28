@@ -10,8 +10,7 @@ export default function configureStore(initialState) {
     rootReducer,
     initialState,
     applyMiddleware(
-      thunk,
-      logger
+      thunk
     )
   )
 }

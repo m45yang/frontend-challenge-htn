@@ -69,7 +69,6 @@ const initialState = {
 }
 
 export default function rootReducer(state = initialState, action) {
-  console.log(action)
   switch (action.type) {
     case 'RECEIVE_JSON':
       return Object.assign({}, state, {

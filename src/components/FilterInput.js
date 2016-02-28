@@ -7,10 +7,8 @@ export default class FilterInput extends Component {
   }
 
   handleFilterInputChange() {
-    console.log('handleFilterInputChange')
     let newSkillsFilters = this.props.skillsFilters
     let index = this.props.filterId
-    console.log(index)
 
     if (this.refs.checkbox.checked) {
       newSkillsFilters[index].on = true
