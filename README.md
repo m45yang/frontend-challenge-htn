@@ -1,10 +1,9 @@
-# Hack the North Frontend Challenge Starter Kit
+# Hack the North Frontend Challenge 
 
-This is a minimal starter kit in order to have you diving into the challenge with no setup hassle. There is a requirement for having NodeJS setup in order to use this.
+Front end application created using ReactJS and Redux.
+Displays attendees with filter and search functionalities.
 
 ## Usage
-
-__Close this repository (DO NOT FORK!):__
 
 `git clone git@github.com:hackthenorth/frontend-challenge-starter.git`
 
@@ -14,15 +13,6 @@ First we need to all of the packages required in order to run the development se
 
 `npm install`
 
-
-
-__Development mode with livereload:__
-
-For developing you will need to start the dev server which watches files for changes in order to recompile. When you make edits you just need to refresh the page to see the changes.
+__Running the app:__
 
 `npm run watch`
-
-
-__When you're completed__
-
-Make a new Github repository of your own, push your code to that repository, and send us the link!
