@@ -4,7 +4,10 @@ export default class Attendee extends Component {
   render() {
     return (
       <li>
-        {this.props.name}: {this.props.email}
+        { this.props.name } <br/>
+        { this.props.skills.map(skill => 
+          <p>{ skill.name }: { skill.rating }</p>
+        ) }
       </li>
     )
   }

@@ -5,12 +5,12 @@ export default class AttendeeList extends Component {
   render() {
     return (
       <ul>
-        {this.props.attendees.map(attendee =>
+        { this.props.attendees.map(attendee =>
           <Attendee
-            key={attendee.name}
-            {...attendee}
+            key={ attendee.name }
+            { ...attendee }
           />
-        )}
+        ) }
       </ul>
     );
   }
