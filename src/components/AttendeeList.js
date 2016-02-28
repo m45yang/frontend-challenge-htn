@@ -4,10 +4,10 @@ import Attendee from './Attendee';
 export default class AttendeeList extends Component {
   render() {
     return (
-      <ul>
-        { this.props.attendees.map(attendee =>
+      <ul className="list-group">
+        { this.props.attendees.map((attendee, index) =>
           <Attendee
-            key={ attendee.name }
+            key={ index }
             { ...attendee }
           />
         ) }

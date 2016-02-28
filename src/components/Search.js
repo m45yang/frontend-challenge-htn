@@ -18,8 +18,7 @@ export default class Search extends Component {
       <div>
         <h3> Search by name </h3>
         <form>
-          <input type="text" ref="searchName" />
-          <button onClick={ this.handleSearchSubmit }> Search! </button>
+          <input type="text" ref="searchName" onChange={ this.handleSearchSubmit }/>
         </form>
       </div>
     )

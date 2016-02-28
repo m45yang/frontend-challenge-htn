@@ -3,11 +3,35 @@ import React, { Component, PropTypes } from 'react';
 export default class Attendee extends Component {
   render() {
     return (
-      <li>
-        { this.props.name } <br/>
-        { this.props.skills.map(skill => 
-          <p>{ skill.name }: { skill.rating }</p>
-        ) }
+      <li className="list-group-item">
+        <img src={ this.props.picture } /> <br/>
+        <h4> Name: { this.props.name } </h4> <br/>
+        <span> Email: { this.props.email } </span> <br/>
+        <span> Phone Number: { this.props.phone } </span> <br/> <br/>
+        <table className="table">
+          <thead>
+            <tr>
+              <td>
+                Skill name
+              </td>
+              <td>
+                Skill rating
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            { this.props.skills.map((skill, index) => 
+              <tr key={ index }>
+                <td>
+                  { skill.name }
+                </td>
+                <td>
+                  { skill.rating }
+                </td>
+              </tr>
+            ) }
+          </tbody>
+        </table>
       </li>
     )
   }

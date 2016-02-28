@@ -18,11 +18,10 @@ export function fetchAttendees(dispatch) {
     .then(json => dispatch(recieveJson(json)))
 }
 
-export function filterAttendees(skillsFilters, filterRatings) {
+export function filterAttendees(skillsFilters) {
   return {
     type: 'RECEIVE_FILTERS',
-    skillsFilters: skillsFilters,
-    filterRatings: filterRatings
+    skillsFilters: skillsFilters
   }
 }
 

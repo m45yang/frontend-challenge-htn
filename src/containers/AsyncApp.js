@@ -22,17 +22,23 @@ class AsyncApp extends Component {
     dispatch(searchAttendeesByName(searchName))
   }
 
-  filterAttendees(filters, filterRatings) {
+  filterAttendees(filters) {
     const { dispatch } = this.props
-    dispatch(filterAttendees(filters, filterRatings))
+    dispatch(filterAttendees(filters))
   }
 
   render() {
     return (
-      <div>
+      <div className="container">
         <Search handleSearchSubmit={ this.searchAttendees } />
-        <Filter handleFilterSubmit={ this.filterAttendees } skillsFilters={ this.props.skillsFilters } filterRatings={ this.props.filterRatings }/>
-        <AttendeeList attendees={ this.props.attendees }/>
+        <div className="row">
+          <div className="col-md-3">
+            <Filter handleFilterSubmit={ this.filterAttendees } skillsFilters={ this.props.skillsFilters }/>
+          </div>
+          <div className="col-md-9">
+            <AttendeeList attendees={ this.props.attendees }/>
+          </div>
+        </div>
       </div>
     )
   }
@@ -49,7 +55,7 @@ AsyncApp.propTypes = {
 * Allows the attendee to be displayed as long as he or
 * she has all of the skills listed in skillsFilters.
 */
-function filterBySkills(skillsFilters, filterRatings, obj) {
+function filterBySkills(skillsFilters, obj) {
   let skills = obj.skills.map(function(skill) {
     return skill.name
   })
@@ -59,13 +65,28 @@ function filterBySkills(skillsFilters, filterRatings, obj) {
   })
 
   for (let it=0; it < skillsFilters.length; it++) {
-    let index = skills.indexOf(skillsFilters[it])
-    if (index == -1) {
-      return false
-    } else if (ratings[index] < filterRatings[it]) {
+    if (skillsFilters[it].on) {
+      let index = skills.indexOf(skillsFilters[it].name)
+      if (index === -1) {
+        return false
+      } else if (ratings[index] < skillsFilters[it].rating) {
+        return false
+      }
+    }
+  }
+  return true
+}
+
+function searchFirstAndLastName(searchName, obj) {
+  let nameArray = obj.name.split('')
+  let searchNameArray = searchName.split('')
+
+  for (let it=0; it<searchNameArray.length; it++) {
+    if (searchName[it] !== nameArray[it]) {
       return false
     }
   }
+
   return true
 }
 
@@ -75,18 +96,14 @@ function filterBySkills(skillsFilters, filterRatings, obj) {
 function visibleAttendees(state) {
   let attendees = state.attendees
   let skillsFilters = state.skillsFilters
-  console.log(skillsFilters)
-  let filterRatings = state.filterRatings
-  console.log(filterRatings)
   let searchName = state.searchName
 
-  if (skillsFilters.length != 0) {
-    attendees = attendees.filter(filterBySkills.bind(this, skillsFilters, filterRatings))
-    console.log(attendees.length)
+  if (skillsFilters.length !== 0) {
+    attendees = attendees.filter(filterBySkills.bind(this, skillsFilters))
   }
 
   if (searchName !== '') {
-    attendees = attendees.filter(obj => obj.name == searchName)
+    attendees = attendees.filter(searchFirstAndLastName.bind(this, searchName))
   }
 
   return attendees
@@ -95,7 +112,6 @@ function visibleAttendees(state) {
 function mapStateToProps(state) {
   return {
     skillsFilters: state.skillsFilters,
-    filterRatings: state.filterRatings,
     searchName: state.searchName,
     attendees: visibleAttendees(state)
   }

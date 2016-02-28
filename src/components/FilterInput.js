@@ -7,32 +7,29 @@ export default class FilterInput extends Component {
   }
 
   handleFilterInputChange() {
+    console.log('handleFilterInputChange')
     let newSkillsFilters = this.props.skillsFilters
-    let newFilterRatings = this.props.filterRatings
-    let index = newSkillsFilters.indexOf(this.props.filterName)
+    let index = this.props.filterId
+    console.log(index)
 
-    if (index == -1) {
-      index = newSkillsFilters.length
-    }
-
-    if (!this.refs.checkbox.checked) {
-      newSkillsFilters.splice(index, 1)
+    if (this.refs.checkbox.checked) {
+      newSkillsFilters[index].on = true
     } else {
-      newSkillsFilters[index] = this.props.filterName
+      newSkillsFilters[index].on = false
     }
 
-    newFilterRatings[index] = this.refs.range.value
+    newSkillsFilters[index].rating = this.refs.range.value
 
     const { filterInputChange } = this.props
-    filterInputChange(newSkillsFilters, newFilterRatings)
+    filterInputChange(newSkillsFilters)
   }
 
   render() {
     return (
       <div>
         <input type="checkbox" ref="checkbox" value={ this.props.filterName } onChange={ this.handleFilterInputChange }/>
-        { this.props.filterName }, Rating: 
-        1<input type="range" ref="range" min="0" max="10" onChange={ this.handleFilterInputChange }/>10<br/>
+        { this.props.filterName }, Rating: { this.props.filterRating }
+        <input type="range" ref="range" min="0" max="10" defaultValue="0" onChange={ this.handleFilterInputChange }/><br/>
       </div>
     )
   }
@@ -40,8 +37,8 @@ export default class FilterInput extends Component {
 
 FilterInput.propTypes = {
   filterInputChange : React.PropTypes.func,
+  filterId: React.PropTypes.number,
+  filterRating: React.PropTypes.number,
   filterName: React.PropTypes.string,
-  filterRating: React.PropTypes.string,
   skillsFilters: React.PropTypes.array,
-  filterRatings: React.PropTypes.array
 }

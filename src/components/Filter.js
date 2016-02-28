@@ -7,27 +7,24 @@ export default class Filter extends Component {
     this.handleFilterChange = this.handleFilterChange.bind(this)
   }
 
-  handleFilterChange(newFilters, filterRatings) {
+  handleFilterChange(newFilters) {
     const { handleFilterSubmit } = this.props
-    handleFilterSubmit(newFilters, filterRatings)
+    handleFilterSubmit(newFilters)
   }
 
   render() {
     return (
       <div>
         <h3> Skills </h3>
-        <FilterInput filterName="Go" 
-                     filterRating="GoRating" 
-                     filterInputChange={ this.handleFilterChange }
-                     skillsFilters={ this.props.skillsFilters }
-                     filterRatings={ this.props.filterRatings }
-        />
-        <FilterInput filterName="C" 
-                     filterRating="CRating" 
-                     filterInputChange={ this.handleFilterChange }
-                     skillsFilters={ this.props.skillsFilters } 
-                     filterRatings={ this.props.filterRatings }
-        />
+        { this.props.skillsFilters.map((skillFilter, index) =>
+          <FilterInput key={ index }
+                       filterId={ index }
+                       filterName={ skillFilter.name }
+                       filterRating={ skillFilter.rating }
+                       filterInputChange={ this.handleFilterChange }
+                       skillsFilters={ this.props.skillsFilters }
+          />
+        ) }
       </div>
     )
   }
@@ -36,5 +33,4 @@ export default class Filter extends Component {
 Filter.propTypes = {
   handleFilterSubmit : React.PropTypes.func,
   skillsFilters: React.PropTypes.array,
-  filterRatings: React.PropTypes.array
 }
