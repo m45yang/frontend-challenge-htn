@@ -1,7 +1,6 @@
 # Hack the North Frontend Challenge 
 
-Front end application created using ReactJS and Redux.
-Displays attendees with filter and search functionalities.
+Front end application created using ReactJS and Redux. Displays a list of Hack the North attendees with filter and search functionalities.
 
 ## Usage
 
